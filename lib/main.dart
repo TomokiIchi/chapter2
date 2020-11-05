@@ -26,6 +26,20 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String _message;
+
+  @override
+  void initState() {
+    super.initState();
+    _message = 'Hello!';
+  }
+
+  void _setMessage() {
+    setState(() {
+      _message = 'Tapped!';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +47,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Text(
-        widget.message,
+        _message,
         style: TextStyle(fontSize: 32.0),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _setMessage,
+        tooltip: 'set message.',
+        child: Icon(Icons.star),
       ),
     );
   }
